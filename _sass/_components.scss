@@ -1,0 +1,205 @@
+// Interest Tags
+.interests-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.interest-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-md;
+  background: $bg-card;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  transition: all $transition-fast;
+
+  i {
+    color: $accent-primary;
+    font-size: 0.9em;
+  }
+
+  &:hover {
+    border-color: $accent-primary;
+    transform: translateY(-2px);
+  }
+}
+
+// Publication Cards
+.publications-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.publication-card {
+  background: $bg-card;
+  border-radius: $radius-md;
+  padding: $spacing-md $spacing-lg;
+  border-left: 4px solid $accent-primary;
+  transition: all $transition-base;
+  box-shadow: $shadow-sm;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-md;
+  }
+
+  .pub-year {
+    display: block;
+    font-size: $font-size-sm;
+    color: $text-muted;
+    margin-bottom: $spacing-xs;
+  }
+
+  .pub-title {
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: $spacing-sm;
+    line-height: $line-height-tight;
+  }
+
+  .pub-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-sm;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  border-radius: $radius-sm;
+  transition: all $transition-fast;
+  text-decoration: none;
+
+  i {
+    font-size: 0.85em;
+  }
+}
+
+.btn-primary {
+  background: $accent-primary;
+  color: $bg-primary;
+
+  &:hover {
+    background: $accent-secondary;
+    color: $bg-primary;
+    transform: translateY(-1px);
+  }
+}
+
+.btn-outline {
+  background: transparent;
+  color: $accent-primary;
+  border: 1px solid $accent-primary;
+
+  &:hover {
+    background: $accent-primary;
+    color: $bg-primary;
+  }
+}
+
+// Social Icons
+.social-icons {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: center;
+
+  &.left {
+    justify-content: flex-start;
+  }
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: $bg-card;
+  color: $text-secondary;
+  font-size: 1.25rem;
+  transition: all $transition-fast;
+  border: 1px solid $border-color;
+
+  &:hover {
+    background: $accent-primary;
+    color: $bg-primary;
+    border-color: $accent-primary;
+    transform: translateY(-3px);
+  }
+
+  // Specific hover colors
+  &.mastodon:hover {
+    background: #6364ff;
+    border-color: #6364ff;
+  }
+
+  &.github:hover {
+    background: #333;
+    border-color: #333;
+  }
+
+  &.blog:hover {
+    background: $accent-secondary;
+    border-color: $accent-secondary;
+  }
+
+  &.soundcloud:hover {
+    background: #ff5500;
+    border-color: #ff5500;
+  }
+
+  &.osu:hover {
+    background: #bb0000;
+    border-color: #bb0000;
+  }
+}
+
+// CV Button
+.cv-section {
+  .btn {
+    font-size: 1rem;
+    padding: $spacing-sm $spacing-lg;
+  }
+}
+
+.cv-download {
+  margin-top: $spacing-md;
+}
+
+// Document Link
+.document-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  background: $bg-card;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  color: $text-primary;
+  font-weight: 500;
+  transition: all $transition-fast;
+
+  i {
+    color: $accent-primary;
+  }
+
+  &:hover {
+    border-color: $accent-primary;
+    transform: translateY(-2px);
+    color: $text-primary;
+  }
+}

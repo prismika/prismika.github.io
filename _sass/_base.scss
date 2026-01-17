@@ -1,0 +1,85 @@
+// Reset & Base Styles
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: $font-size-base;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-body;
+  background-color: $bg-primary;
+  color: $text-primary;
+  line-height: $line-height-base;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  font-weight: 600;
+  line-height: $line-height-tight;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+h1 {
+  font-size: $font-size-3xl;
+}
+
+h2 {
+  font-size: $font-size-2xl;
+  margin-bottom: $spacing-md;
+}
+
+h3 {
+  font-size: $font-size-xl;
+}
+
+p {
+  margin-bottom: $spacing-sm;
+  color: $text-secondary;
+}
+
+// Links
+a {
+  color: $accent-primary;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $accent-hover;
+  }
+}
+
+// Lists
+ul, ol {
+  list-style: none;
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Horizontal rule
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, $border-color, transparent);
+  margin: $spacing-xl 0;
+}
+
+// Selection
+::selection {
+  background: $accent-primary;
+  color: $bg-primary;
+}

@@ -1,0 +1,131 @@
+// Container
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+// Header
+.site-header {
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $border-color;
+  background: $bg-secondary;
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $container-padding;
+  }
+
+  .site-nav {
+    display: flex;
+    gap: $spacing-md;
+
+    a {
+      color: $text-secondary;
+      font-weight: 400;
+      font-size: $font-size-sm;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      &:hover {
+        color: $accent-primary;
+      }
+    }
+  }
+}
+
+// Hero Section
+.hero {
+  padding: $spacing-2xl 0;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: $spacing-xl;
+  align-items: center;
+}
+
+.hero-content {
+  h1 {
+    margin-bottom: $spacing-xs;
+  }
+
+  .subtitle {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    margin-bottom: $spacing-md;
+  }
+
+  .contact-info {
+    margin-bottom: $spacing-md;
+
+    p {
+      margin-bottom: $spacing-xs;
+      font-size: $font-size-sm;
+    }
+
+    a {
+      color: $accent-primary;
+    }
+  }
+}
+
+.hero-image {
+  img {
+    width: 100%;
+    max-width: 340px;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-lg;
+    margin-left: auto;
+  }
+}
+
+// Sections
+.section {
+  padding: $spacing-xl 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $border-color;
+  }
+}
+
+.section-title {
+  font-size: $font-size-2xl;
+  margin-bottom: $spacing-lg;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: $accent-primary;
+    border-radius: 2px;
+  }
+}
+
+// Footer
+.site-footer {
+  padding: $spacing-xl 0;
+  background: $bg-secondary;
+  margin-top: $spacing-2xl;
+  border-top: 1px solid $border-color;
+
+  .footer-content {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $container-padding;
+    text-align: center;
+  }
+
+  .copyright {
+    margin-top: $spacing-md;
+    font-size: $font-size-sm;
+    color: $text-muted;
+  }
+}

@@ -1,0 +1,43 @@
+- title: "Harmonic representatives in homology over finite fields"
+  venue: "Journal of Applied and Computational Topology"
+  year: 2021
+  links:
+    - label: "arXiv"
+      url: "https://arxiv.org/abs/2110.10885"
+      icon: "fa-solid fa-file-lines"
+    - label: "JACT"
+      url: "https://link.springer.com/article/10.1007/s41468-023-00117-w"
+      icon: "fa-solid fa-book"
+
+- title: "Geometry and stability of supervised learning problems"
+  venue: "Journal of Machine Learning Research"
+  year: 2024
+  links:
+    - label: "arXiv"
+      url: "https://arxiv.org/abs/2403.01660"
+      icon: "fa-solid fa-file-lines"
+    - label: "JMLR"
+      url: "https://www.jmlr.org/papers/v26/24-0322.html"
+      icon: "fa-solid fa-book"
+    - label: "Explainer"
+      url: "https://brantleyfightsfunctors.blogspot.com/2024/03/paper-explainer-geometry-and-stability.html"
+      icon: "fa-solid fa-lightbulb"
+
+- title: "Recovering a group from few orbits"
+  venue: "Applied and Computational Harmonic Analysis"
+  year: 2024
+  links:
+    - label: "arXiv"
+      url: "https://arxiv.org/abs/2411.17434"
+      icon: "fa-solid fa-file-lines"
+    - label: "ACHA"
+      url: "https://doi.org/10.1016/j.acha.2025.101836"
+      icon: "fa-solid fa-book"
+
+- title: "Estimating the Euclidean distortion of an orbit space"
+  venue: "Preprint"
+  year: 2025
+  links:
+    - label: "arXiv"
+      url: "https://arxiv.org/abs/2506.04425"
+      icon: "fa-solid fa-file-lines"

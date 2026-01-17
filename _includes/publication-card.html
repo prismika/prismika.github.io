@@ -1,0 +1,12 @@
+<article class="publication-card">
+  <span class="pub-year">{{ include.pub.year }}</span>
+  <h3 class="pub-title">{{ include.pub.title }}</h3>
+  <div class="pub-links">
+    {% for link in include.pub.links %}
+    <a href="{{ link.url }}" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+      <i class="{{ link.icon }}"></i>
+      {{ link.label }}
+    </a>
+    {% endfor %}
+  </div>
+</article>

@@ -1,0 +1,35 @@
+# Site Settings
+title: Brantley Vose
+description: Mathematics PhD Student at The Ohio State University
+url: "https://prismika.github.io"
+baseurl: ""
+
+# Author
+author:
+  name: Brantley Vose
+  email: vose.5@osu.edu
+  title: Mathematics PhD Student
+  institution: The Ohio State University
+  osu_page: https://math.osu.edu/people/vose.5
+
+# Social Links
+social:
+  blog: https://brantleyfightsfunctors.blogspot.com/
+  osu: https://math.osu.edu/people/vose.5
+  github: https://github.com/prismika
+  mastodon: https://mathstodon.xyz/@prismika
+  soundcloud: https://soundcloud.com/prismika
+
+# Build Settings
+markdown: kramdown
+sass:
+  style: compressed
+  sass_dir: _sass
+
+# Exclude from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle

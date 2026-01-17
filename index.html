@@ -1,87 +1,62 @@
-<html>
-<head>
-	<title>Brantley Vose</title>
-</head>
+---
+layout: default
+title: Brantley Vose
+---
 
-<body text="#ffffff" face="Garamond" bgcolor="#393939" link="#aaaaaa" vlink="#aaaaaa" alink="#aaaaaa">
+<section class="hero">
+  <div class="hero-content">
+    <h1>{{ site.author.name }}</h1>
+    <p class="subtitle">{{ site.author.title }} at {{ site.author.institution }}</p>
 
-<table>
-<tr>
-<td width=8%>
-</td>
-<td>
+    <div class="contact-info">
+      <p><i class="fa-solid fa-envelope"></i> {{ site.author.email }}</p>
+    </div>
 
-<table>
-	<tr><td width=50%>
-		<font size="6">Brantley Vose</font>
-		<br><font size="4">
-		Mathematics PhD Student at The Ohio State University
-		<br>
-		Email: [mylastname].5@osu.edu
-		<br>
-		<a href="https://math.osu.edu/people/vose.5" target="_blank" rel="noopener noreferrer">OSU Page</a>
-		<br><br>
+    {% include social-icons.html align="left" %}
+  </div>
 
-		</font>
-	</td>
+  <div class="hero-image">
+    <img src="{{ '/assets/images/profile.jpg' | relative_url }}" alt="{{ site.author.name }}">
+  </div>
+</section>
 
-	<td width=660 div align="right">
-			<img div align=right src="photos/001.jpg" width=270 height=250 alt="dsp in la">	
-	</td></tr>
-</table>
+<section id="interests" class="section">
+  <h2 class="section-title">Interested In</h2>
+  <div class="interests-list">
+    <span class="interest-tag">
+      <i class="fa-solid fa-shapes"></i>
+      Geometric Data Analysis
+    </span>
+    <span class="interest-tag">
+      <i class="fa-solid fa-brain"></i>
+      Machine Learning
+    </span>
+    <span class="interest-tag">
+      <i class="fa-solid fa-truck-fast"></i>
+      Optimal Transport
+    </span>
+    <span class="interest-tag">
+      <i class="fa-solid fa-gamepad"></i>
+      Beat Saber
+    </span>
+  </div>
+</section>
 
-<hr size="1" color="#999999"><div align="justify">
-<!----------------------------------------------------------------------------------------->
+<section id="papers" class="section">
+  <h2 class="section-title">Papers</h2>
+  <div class="publications-list">
+    {% for pub in site.data.publications reversed %}
+      {% include publication-card.html pub=pub %}
+    {% endfor %}
+  </div>
+</section>
 
-<font size="6">
-       Interested In...
-</font>
-	<ul>
-    <font size="5">
-		<li> Machine learning
-		<li> Optimal transport
-        <li> Topological data analysis
-        <li> Beat Saber
-    </ul>
-    </font>
-
-<br><br>
-<font size="6">
-       Documents
-</font>
-	<ul>
-    <font size="5">
-        <li> <a href="documents/CV.pdf" target="_blank" rel="noopener noreferrer">CV</a>
-    </ul>
-    </font>
-
-<br><br>
-
-<font size="6">
-	Papers
-</font>
- <ul>
- <font size="5">
-	<li> Harmonic representatives in homology over finite fields | <a href="https://arxiv.org/abs/2110.10885" target="_blank" rel="noopener noreferrer">arXiv</a> | <a href="https://link.springer.com/article/10.1007/s41468-023-00117-w" target="_blank" rel="noopener noreferrer">JACT</a>
-	<li> Geometry and stability of supervised learning problems | <a href="https://arxiv.org/abs/2403.01660" target="_blank" rel="noopener noreferrer">arXiv</a> | <a href="https://brantleyfightsfunctors.blogspot.com/2024/03/paper-explainer-geometry-and-stability.html" target="_blank" rel="noopener noreferrer">Explainer!</a> | (To appear in JMLR)
-	<li> Recovering a group from few orbits | <a href="https://arxiv.org/abs/2411.17434" target="_blank" rel="noopener noreferrer">arXiv</a>
-	<li> Estimating the Euclidean distortion of an orbit space | <a href="https://arxiv.org/abs/2506.04425" target="_blank" rel="noopener noreferrer">arXiv</a>
- </ul>
-</font>
-
-<br><br>
-
-<font size="6">
-       Links
-</font>
-	<ul>
-    <font size="5">
-    	<li> Follow me on <a href="https://mathstodon.xyz/@prismika" target="_blank" rel="noopener noreferrer">Mastodon</a>!
-    	<li> And <a href="https://github.com/prismika" target="_blank" rel="noopener noreferrer">Github</a>!
-       <li> <a href="https://brantleyfightsfunctors.blogspot.com/" target="_blank" rel="noopener noreferrer">Brantley Fights Functors</a>, where I post occasionally.
-	<li> <a href="https://soundcloud.com/prismika" target="_blank" rel="noopener noreferrer">Soundcloud</a>, where I post almost never.
-    </ul>
-    </font>
-
-</body>
-</html>
+<section id="cv" class="section cv-section">
+  <h2 class="section-title">Curriculum Vitae</h2>
+  <div class="cv-download">
+    <a href="{{ '/documents/CV.pdf' | relative_url }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+      <i class="fa-solid fa-file-pdf"></i>
+      Download CV
+    </a>
+  </div>
+</section>
