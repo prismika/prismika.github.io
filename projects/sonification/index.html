@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hearing the Shape of Data</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #0d300d;
+            color: #f8f8f8;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        h1 {
+            margin: 0 0 10px 0;
+            font-weight: 300;
+        }
+        .description {
+            color: #b7dfbc;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .controls {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        label {
+            font-size: 14px;
+            color: #b7dfbc;
+        }
+        select {
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 1px solid #03492d;
+            border-radius: 4px;
+            background: #386330;
+            color: #f8f8f8;
+            cursor: pointer;
+        }
+        select:hover {
+            border-color: #00d0cb;
+        }
+        #loading {
+            color: #7a9f82;
+            font-style: italic;
+        }
+        #plot {
+            width: 100%;
+            height: 600px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #03492d;
+        }
+        .instructions {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #386330;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #b7dfbc;
+        }
+        .instructions strong {
+            color: #f8f8f8;
+        }
+        .explanation {
+            margin-top: 20px;
+            padding: 15px;
+            background: #386330;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #b7dfbc;
+            line-height: 1.6;
+        }
+        .explanation h2 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #f8f8f8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hearing the Shape of Data</h1>
+        <p class="description">
+            There are many ways to communicate aspects of data visually. But what about sonically? If we imagine that a cloud of data points is a physical shape and pick a data point to "flick", we can model the sound the shape would make as it vibrates with the impact. A surprising amount of geometric information can be gleaned from the sound, at least in principle! Whether or not you can hear that information in practice is up for debate. Give it a try below!
+        </p>
+
+        <div class="controls">
+            <label for="shape-select">Shape:</label>
+            <select id="shape-select">
+                <option value="cup">Cup</option>
+                <option value="torus">Torus</option>
+            </select>
+            <span id="loading"></span>
+        </div>
+
+        <div class="instructions">
+            <strong>How to use:</strong> Click on a point in the visualization below to flick the point and hear the sound it makes.
+            Drag to rotate.
+            Scroll to zoom.
+        </div>
+
+        <div id="plot"></div>
+
+        <div class="explanation">
+            <h2>Explanation</h2>
+            <p>
+                I'll write something here eventually! Probably!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Audio parameters
+        const SAMPLE_RATE = 22050;
+
+        // Current shape data
+        let shapeData = null;
+        let audioContext = null;
+        let synthWorker = null;
+        let isUpdating = false;  // Guard against restyle triggering clicks
+
+        // Initialize audio context on first user interaction
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)({
+                    sampleRate: SAMPLE_RATE
+                });
+            }
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        }
+
+        // Initialize Web Worker for audio synthesis
+        function initWorker() {
+            if (!synthWorker) {
+                synthWorker = new Worker('worker.js');
+                synthWorker.onmessage = function(e) {
+                    playBuffer(e.data.samples);
+                };
+                synthWorker.onerror = function(e) {
+                    console.error('Worker error:', e);
+                };
+            }
+        }
+
+        // Play an audio buffer
+        function playBuffer(samples) {
+            initAudio();
+            const buffer = audioContext.createBuffer(1, samples.length, SAMPLE_RATE);
+            buffer.getChannelData(0).set(samples);
+
+            const source = audioContext.createBufferSource();
+            source.buffer = buffer;
+            source.connect(audioContext.destination);
+            source.start();
+        }
+
+        // Request sound synthesis from worker
+        function playSound(pointIndex) {
+            initAudio();
+            initWorker();
+
+            synthWorker.postMessage({
+                pointIndex: pointIndex,
+                eigenvectors: shapeData.eigenvectors,
+                frequencies: shapeData.frequencies,
+                eigenvalues: shapeData.eigenvalues
+            });
+        }
+
+        // Compute a single row of the normalized kernel matrix on demand
+        function computeKernelRow(pointIndex) {
+            const points = shapeData.points;
+            const alpha = shapeData.alpha;
+            const normWeights = shapeData.normWeights;
+            const n = points.length;
+
+            const pi = points[pointIndex];
+            const wi = normWeights[pointIndex];
+            const row = new Array(n);
+
+            for (let j = 0; j < n; j++) {
+                const pj = points[j];
+                const dx = pi[0] - pj[0];
+                const dy = pi[1] - pj[1];
+                const dz = pi[2] - pj[2];
+                const distSq = dx * dx + dy * dy + dz * dz;
+                row[j] = Math.exp(-alpha * distSq) * wi * normWeights[j];
+            }
+
+            return row;
+        }
+
+        // Update the plot colors when a point is clicked
+        function updateColors(pointIndex) {
+            const kernelRow = computeKernelRow(pointIndex);
+            Plotly.restyle('plot', {
+                'marker.color': [kernelRow]
+            });
+        }
+
+        // Load shape data and render plot
+        async function loadShape(shapeName) {
+            const loading = document.getElementById('loading');
+            loading.textContent = 'Loading...';
+
+            try {
+                const response = await fetch(`data/${shapeName}.json`);
+                if (!response.ok) throw new Error('Failed to load shape data');
+                shapeData = await response.json();
+
+                renderPlot();
+                loading.textContent = '';
+            } catch (error) {
+                loading.textContent = 'Error loading shape';
+                console.error(error);
+            }
+        }
+
+        // Render the 3D scatter plot
+        function renderPlot() {
+            const points = shapeData.points;
+            const n = points.length;
+
+            // Initial colors from first kernel row (computed on demand)
+            const initialColors = computeKernelRow(0);
+
+            const trace = {
+                type: 'scatter3d',
+                mode: 'markers',
+                x: points.map(p => p[0]),
+                y: points.map(p => p[1]),
+                z: points.map(p => p[2]),
+                marker: {
+                    size: 4,
+                    color: initialColors,
+                    colorscale: 'Viridis',
+                    opacity: 1
+                },
+                text: Array.from({ length: n }, (_, i) => i.toString()),
+                hoverinfo: 'text'
+            };
+
+            const layout = {
+                paper_bgcolor: '#fff',
+                plot_bgcolor: '#fff',
+                scene: {
+                    xaxis: {
+                        title: '',
+                        showgrid: true,
+                        gridcolor: '#eee',
+                        zerolinecolor: '#ccc',
+                        showbackground: false
+                    },
+                    yaxis: {
+                        title: '',
+                        showgrid: true,
+                        gridcolor: '#eee',
+                        zerolinecolor: '#ccc',
+                        showbackground: false
+                    },
+                    zaxis: {
+                        title: '',
+                        showgrid: true,
+                        gridcolor: '#eee',
+                        zerolinecolor: '#ccc',
+                        showbackground: false
+                    },
+                    aspectmode: 'data',
+                    bgcolor: '#fff'
+                },
+                margin: { l: 0, r: 0, t: 0, b: 0 },
+                hovermode: 'closest'
+            };
+
+            const config = {
+                responsive: true,
+                displayModeBar: true,
+                modeBarButtonsToRemove: ['toImage', 'sendDataToCloud']
+            };
+
+            Plotly.newPlot('plot', [trace], layout, config);
+
+            // Handle click events
+            document.getElementById('plot').on('plotly_click', function(data) {
+                if (isUpdating) return;  // Prevent infinite loop from restyle
+
+                if (data.points && data.points.length > 0) {
+                    const pointIndex = data.points[0].pointNumber;
+
+                    isUpdating = true;
+                    updateColors(pointIndex);
+                    playSound(pointIndex);
+
+                    // Reset guard after restyle completes
+                    setTimeout(() => { isUpdating = false; }, 100);
+                }
+            });
+        }
+
+        // Initialize
+        document.getElementById('shape-select').addEventListener('change', function() {
+            loadShape(this.value);
+        });
+
+        // Load initial shape
+        loadShape('cup');
+    </script>
+</body>
+</html>

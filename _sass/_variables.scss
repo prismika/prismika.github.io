@@ -1,17 +1,17 @@
-// Color Palette - Warm Dark Theme
-$bg-primary: #1a2e1f;
-$bg-secondary: #162e21;
-$bg-card: #1f3729;
+// Color Palette - Green Theme
+$bg-primary: #0d300d;      // Darkest
+$bg-secondary: #051405;
+$bg-card: #386330;         // Between darkest and dark green
 
 $text-primary: #f8f8f8;
-$text-secondary: #a0aec0;
-$text-muted: #718096;
+$text-secondary: #b7dfbc;  // Lightest green
+$text-muted: #7a9f82;      // Muted green
 
-$accent-primary: #e07a5f;    // Coral
-$accent-secondary: #f4a261;  // Orange
-$accent-hover: #f2cc8f;      // Light gold
+$accent-primary: #00d0cb;   // Sky
+$accent-secondary: #009490; // Darker sky
+$accent-hover: #b7dfbc;     // Lightest green
 
-$border-color: #374151;
+$border-color: #03492d;     // Dark green
 $card-border: $accent-primary;
 
 // Typography
