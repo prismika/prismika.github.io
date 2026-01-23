@@ -113,6 +113,34 @@
         .note {
             margin-top: 1cm;
         }
+        .image-credits {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #386330;
+            font-size: 0.8rem;
+            color: #7a9f82;
+        }
+        .image-credits summary {
+            cursor: pointer;
+            color: #7a9f82;
+            transition: color 0.2s ease;
+        }
+        .image-credits summary:hover {
+            color: #b7dfbc;
+        }
+        .image-credits ul {
+            margin-top: 0.5rem;
+            margin-left: 1.5rem;
+            line-height: 1.8;
+        }
+        .image-credits a {
+            color: #7a9f82;
+            text-decoration: none;
+        }
+        .image-credits a:hover {
+            color: #00d0cb;
+            text-decoration: underline;
+        }
 
         /* Responsive: stack on mobile */
         @media (max-width: 600px) {
@@ -202,7 +230,20 @@
                         2025: Fargo (Water Tower)
                     </p>
                 </div>
-                <img src="images/tank.jpg" alt="A colorful water tower that says 'Fargo'." height="200"> 
+                <img src="images/tank.jpg" alt="A colorful water tower that says 'Fargo'." height="200">
+            </div>
+             <div class="card">
+                <div class="card-content">
+                    <h2 class="card-title">
+                        <a href="https://www.thoroughbreddailynews.com/sovereign-rule-sovereignty-a-runaway-winner-of-hoty-champion-3yo-male/" target="_blank" rel="noopener">
+                            Horse of the Year
+                        </a>
+                    </h2>
+                    <p class="card-description">
+                        2025: Sovereignty
+                    </p>
+                </div>
+                <img src="images/sovereignty.jpg" alt="Close-up of Sovereignty, the race horse." height="200">
             </div>
         </div>
         <div class="note">
@@ -219,6 +260,17 @@
             <li>Not a person (such as "Teacher of the Year" or "TIME Person of the Year")</li>
         </ul>
   </div>
+        <details class="image-credits">
+            <summary>Image credits</summary>
+            <ul>
+                <li>Cloud Dancer: Pantone</li>
+                <li>Robot Tractor: AgXeed</li>
+                <li>European Tree: Marcin Kopij</li>
+                <li>Solar Field: George Steinmetz</li>
+                <li>Fargo Water Tower: Unknown </li>
+                <li>Sovereignty: Sarah Andrew</li>
+            </ul>
+        </details>
     </div>
 </body>
 </html>
