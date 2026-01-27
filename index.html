@@ -42,27 +42,10 @@ title: Brantley Vose
   </div>
 </section>
 
-<section id="papers" class="section">
-  <h2 class="section-title">Papers</h2>
-  <div class="publications-list">
-    {% for pub in site.data.publications reversed %}
-      {% include publication-card.html pub=pub %}
-    {% endfor %}
-  </div>
-</section>
 
-<section id="cv" class="section cv-section">
-  <h2 class="section-title">Curriculum Vitae</h2>
-  <div class="cv-download">
-    <a href="{{ '/documents/CV.pdf' | relative_url }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-      <i class="fa-solid fa-file-pdf"></i>
-      Download CV
-    </a>
-  </div>
-</section>
 
 <section id="other" class="section">
-  <h2 class="section-title">Other Stuff</h2>
+  <h2 class="section-title">Cool Things</h2>
   <div class="other-links">
     <a href="{{ site.social.blog }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
       <i class="fa-solid fa-pen-nib"></i>
@@ -75,6 +58,28 @@ title: Brantley Vose
     <a href="{{ '/projects/things-of-the-year/' | relative_url }}" class="btn btn-primary">
       <i class="fa-solid fa-calendar"></i>
       Things of the Year
+    </a>
+  </div>
+</section>
+
+
+
+<section id="papers" class="section">
+  <h2 class="section-title">Papers</h2>
+  <div class="publications-list">
+    {% for pub in site.data.publications reversed %}
+      {% include publication-card.html pub=pub %}
+    {% endfor %}
+  </div>
+</section>
+
+
+<section id="cv" class="section cv-section">
+  <h2 class="section-title">Curriculum Vitae</h2>
+  <div class="cv-download">
+    <a href="{{ '/documents/CV.pdf' | relative_url }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+      <i class="fa-solid fa-file-pdf"></i>
+      Download CV
     </a>
   </div>
 </section>
