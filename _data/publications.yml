@@ -41,3 +41,6 @@
     - label: "arXiv"
       url: "https://arxiv.org/abs/2506.04425"
       icon: "fa-solid fa-file-lines"
+    - label: "Talk"
+      url: "https://www.youtube.com/watch?v=l0wZRtBxtzQ"
+      icon: "fa-brands fa-youtube"
