@@ -180,6 +180,14 @@
   margin-top: $spacing-md;
 }
 
+// Other Links
+.other-links {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  align-items: flex-start;
+}
+
 // Document Link
 .document-link {
   display: inline-flex;
