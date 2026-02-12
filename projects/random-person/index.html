@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Person on Earth</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #0d300d;
+            color: #f8f8f8;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        h1 {
+            margin: 0 0 10px 0;
+            font-weight: 300;
+        }
+        .description {
+            color: #b7dfbc;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .map-wrapper {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #03492d;
+        }
+        #map {
+            width: 100%;
+            height: 600px;
+        }
+        .pick-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 1000;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: inherit;
+            border: none;
+            border-radius: 6px;
+            background: #386330;
+            color: #f8f8f8;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            transition: background 0.2s;
+        }
+        .pick-btn:hover {
+            background: #4a7a40;
+        }
+        .pick-btn:disabled {
+            opacity: 0.5;
+            cursor: wait;
+        }
+        .clear-btn {
+            position: absolute;
+            top: 60px;
+            right: 12px;
+            z-index: 1000;
+            padding: 8px 14px;
+            font-size: 13px;
+            font-family: inherit;
+            border: none;
+            border-radius: 6px;
+            background: rgba(56, 99, 48, 0.85);
+            color: #b7dfbc;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            transition: background 0.2s;
+        }
+        .clear-btn:hover {
+            background: #4a7a40;
+            color: #f8f8f8;
+        }
+        #loading {
+            color: #7a9f82;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .info-box {
+            margin-top: 15px;
+            padding: 15px;
+            background: #386330;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #b7dfbc;
+            line-height: 1.6;
+        }
+        .info-box strong {
+            color: #f8f8f8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>See Where a Random Person Lives</h1>
+        <p class="description">
+            <p>
+            Have you ever spun a globe to pick a random location? It sucks. Most of the time, your finger will land on some barely populated region or, worse, the middle of an ocean. What if there were a better way?
+            </p>
+
+            <p>
+            Below is a tool that picks a random city <b>weighted by population</b>. That is, the probability of picking a given location is proportional to the number of people that live there. Another way to say this: each click selects a <b>person</b> uniformly at random and shows you where they live. Hopefully this gives more weight to more interesting places!
+            </p>
+
+            <p>
+            I think it's also fun for just getting a feel for where people actually live. For instance, if you look at 100 locations, how many of them are places you've heard of?
+            </p>
+        </p>
+
+        <div id="loading">Loading city data...</div>
+
+        <div class="map-wrapper">
+            <div id="map"></div>
+            <button class="pick-btn" id="pick-btn" disabled>Spin the Globe!</button>
+            <button class="clear-btn" id="clear-btn">Clear Pins</button>
+        </div>
+
+        <div class="info-box">
+            <strong>Details:</strong> The population data is taken from <a href="https://www.geonames.org/" style="color: #00d0cb;">GeoNames</a>. It consists of all cities with population at least 500, which is about 229,000 cities. If you wanted to vacation in a rural area with a dozen residents, I'm afraid you'll have to find it yourself.
+        </div>
+    </div>
+
+    <script>
+        let cities = null;
+        let cumulativePop = null;
+        let totalPop = 0;
+        let map = null;
+        let markers = [];
+
+        // Initialize map
+        map = L.map('map', {
+            center: [20, 0],
+            zoom: 2,
+            minZoom: 2,
+            maxBounds: [[-90, -180], [90, 180]],
+            maxBoundsViscosity: 1.0
+        });
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            noWrap: true
+        }).addTo(map);
+
+        // Load city data
+        fetch('data/cities.json')
+            .then(r => r.json())
+            .then(data => {
+                cities = data;
+                buildCumulativeArray();
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('pick-btn').disabled = false;
+            })
+            .catch(err => {
+                document.getElementById('loading').textContent = 'Error loading city data.';
+                console.error(err);
+            });
+
+        function buildCumulativeArray() {
+            cumulativePop = new Float64Array(cities.length);
+            let sum = 0;
+            for (let i = 0; i < cities.length; i++) {
+                sum += cities[i].pop;
+                cumulativePop[i] = sum;
+            }
+            totalPop = sum;
+        }
+
+        // Binary search for weighted random sampling
+        function weightedRandomIndex() {
+            const target = Math.random() * totalPop;
+            let lo = 0, hi = cumulativePop.length - 1;
+            while (lo < hi) {
+                const mid = (lo + hi) >>> 1;
+                if (cumulativePop[mid] <= target) {
+                    lo = mid + 1;
+                } else {
+                    hi = mid;
+                }
+            }
+            return lo;
+        }
+
+        // Create a circle marker
+        function createMarker(lat, lon, highlighted) {
+            return L.circleMarker([lat, lon], {
+                radius: highlighted ? 8 : 6,
+                fillColor: highlighted ? '#ff4444' : '#999999',
+                color: highlighted ? '#cc0000' : '#666666',
+                weight: highlighted ? 2 : 1,
+                fillOpacity: highlighted ? 0.9 : 0.4
+            });
+        }
+
+        // Pick a random person
+        document.getElementById('pick-btn').addEventListener('click', function() {
+            const idx = weightedRandomIndex();
+            const city = cities[idx];
+
+            // Gray out all existing markers
+            for (const m of markers) {
+                m.setStyle({
+                    radius: 6,
+                    fillColor: '#999999',
+                    color: '#666666',
+                    weight: 1,
+                    fillOpacity: 0.4
+                });
+            }
+
+            // Add new highlighted marker
+            const marker = createMarker(city.lat, city.lon, true);
+            marker.addTo(map);
+            marker.bindPopup('<strong>' + city.n + '</strong>, ' + city.c).openPopup();
+            markers.push(marker);
+
+            // Pan to new pin, keep current zoom
+            map.panTo([city.lat, city.lon]);
+        });
+        // Clear all pins
+        document.getElementById('clear-btn').addEventListener('click', function() {
+            for (const m of markers) {
+                map.removeLayer(m);
+            }
+            markers = [];
+        });
+    </script>
+</body>
+</html>
