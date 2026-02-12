@@ -11,20 +11,14 @@
   gap: $spacing-xs;
   padding: $spacing-xs $spacing-md;
   background: $bg-card;
-  border: 1px solid $border-color;
+  border: none;
   border-radius: $radius-md;
   font-size: $font-size-sm;
   color: $text-secondary;
-  transition: all $transition-fast;
 
   i {
     color: $accent-primary;
     font-size: 0.9em;
-  }
-
-  &:hover {
-    border-color: $accent-primary;
-    transform: translateY(-2px);
   }
 }
 
@@ -183,9 +177,34 @@
 // Other Links
 .other-links {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.other-tag {
+  display: inline-flex;
+  align-items: center;
   gap: $spacing-xs;
-  align-items: flex-start;
+  padding: $spacing-xs $spacing-md;
+  background: $accent-secondary;
+  border: 1px solid $accent-secondary;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  color: $bg-primary;
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  i {
+    color: $bg-primary;
+    font-size: 0.9em;
+  }
+
+  &:hover {
+    background: $accent-primary;
+    border-color: $accent-primary;
+    transform: translateY(-2px);
+    color: $bg-primary;
+  }
 }
 
 // Document Link
