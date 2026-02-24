@@ -3,6 +3,7 @@ layout: post
 title: "What Does an OSI Layer Even Mean?"
 date: 2022-08-31
 thumbnail: /assets/images/blog/OSI/layers.png
+description: "OSI layers, at their core, solve problems."
 ---
 
 <img src="/assets/images/blog/OSI/layers.png" alt="A graphical depiction of the OSI model. It shows five &quot;layers&quot; labeled, from bottom to top, Physical Layer, Data Link Layer, Network Layer, Session Layer, Application Layer" style="width: 33%;" />

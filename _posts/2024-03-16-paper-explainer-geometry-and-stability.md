@@ -4,6 +4,7 @@ title: "Paper Explainer: Geometry and Stability of Supervised Learning Problems"
 date: 2024-03-16
 math: true
 thumbnail: /assets/images/blog/paper-explainer/perturbations.png
+excerpt: "Is there a good way to think about making a whole bunch of changes to your problem at once?"
 ---
 
 Just released a [new paper](https://arxiv.org/abs/2403.01660)! In it, my coauthors and I try to make sense of some challenges in machine learning by creating a "space of all problems". If you don't know what that means, that's okay! This post explains the big ideas for non-mathematicians.

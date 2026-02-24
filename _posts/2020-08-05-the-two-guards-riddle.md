@@ -2,6 +2,7 @@
 layout: post
 title: "The Two Guards Riddle: A Couple of Insights"
 date: 2020-08-05
+description: 'Some observations about the classic riddle in which one guard lies and the other tells the truth.'
 ---
 
 Remember that riddle with the two doors and the two guards, where one always lies and one always tells the truth? I was reminded of it when it came up in a podcast recently. After some thought, I had a couple of insights.

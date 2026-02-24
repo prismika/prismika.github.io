@@ -4,6 +4,7 @@ title: "What's So Great About Polynomials?"
 date: 2025-10-22
 math: true
 thumbnail: /assets/images/blog/polynomials/graph-polynomials.png
+excerpt: "There is at least one good reason to care about polynomials!"
 ---
 
 American math education is notorious for introducing mathematical concepts long before it introduces the reason to care about them. Case in point: polynomials. You know them. They're the functions that look like this:

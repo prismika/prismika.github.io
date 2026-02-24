@@ -2,6 +2,8 @@
 layout: post
 title: '"Why Do I Need Complex Numbers?"'
 date: 2020-04-27
+description: 'An exploration of whether we need complex numbers at all.'
+excerpt: 'We can call the coin a 25 cent piece instead of a quarter. Bon Jovi can sing about being 50% of the way there.'
 ---
 
 I have heard students ask this question over and over in one form or another. A recent incarnation was featured in [this video](https://youtu.be/5PcpBw5Hbwo?t=3469) by 3Blue1Brown. I think this version strikes at the heart of the vendetta that many students have against complex numbers.

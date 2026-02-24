@@ -2,6 +2,7 @@
 layout: post
 title: "Fight Functors with Fire"
 date: 2018-12-17
+excerpt: "Don't just read it; fight it!"
 ---
 
 Once during undergrad, my topology professor was trying to prepare the students for an exam. He was an interesting guy. His look and disposition were unusually relaxed, and his clothes looked more like those of a teenager on summer vacation than those of a professor. Typical attire included shorts, flip flops, and a t-shirt referencing a cartoon from the 90's. Less than 30 years old, he was by far my youngest instructor. He often told stories of his own mathematical struggles in grad school, which always seemed to end with his adviser yelling at him. No one could fault his enthusiasm; his excitement about topology was too pure for this world. I always enjoyed his lectures.

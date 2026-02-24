@@ -4,6 +4,7 @@ title: "Playing Cards with Bayes' Theorem"
 date: 2025-12-02
 math: true
 thumbnail: /assets/images/blog/playing-cards-bayes/wizard-cards.jpg
+excerpt: "Half the fun of Wizard 330 comes from the simple joy of over-analysis."
 ---
 
 Wizard 330 is a home-brewed variant of Wizard, a trick-taking card game. (Think Spades or Euchre. That sort of game.) While strategizing, an interesting problem arises that can be solved very cleanly with some probability. To understand the problem, you don't need to understand the (admittedly very complicated) details of the game. All you need to know is the following:
