@@ -6,6 +6,7 @@
     <title>Random Person on Earth</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
         * {
             box-sizing: border-box;
@@ -102,11 +103,38 @@
         .info-box strong {
             color: #f8f8f8;
         }
+        .home-link {
+            margin: 2rem 0;
+        }
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            font-family: inherit;
+            border-radius: 4px;
+            border: 1px solid #00d0cb;
+            background: transparent;
+            color: #00d0cb;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-home:hover {
+            background: #00d0cb;
+            color: #0d300d;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="/" style="color:#b7dfbc;text-decoration:none;font-size:0.9rem;">Home</a>
+        <div class="home-link">
+            <a href="/" class="btn-home">
+                <i class="fa-solid fa-arrow-left"></i>
+                Home
+            </a>
+        </div>
         <h1>See Where a Random Person Lives</h1>
         <p class="description">
             <p>
