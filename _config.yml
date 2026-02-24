@@ -26,6 +26,9 @@ sass:
   style: compressed
   sass_dir: _sass
 
+plugins:
+  - jekyll-feed
+
 # Exclude from build
 exclude:
   - README.md

@@ -1,0 +1,55 @@
+---
+layout: default
+title: Blog
+---
+
+<style>
+  body {
+    background: #0a1628 url('{{ "/assets/images/gregoire-jeanneau.jpg" | relative_url }}') no-repeat center center fixed;
+    background-size: cover;
+  }
+</style>
+
+<div class="blog-home-link">
+  <a href="{{ '/' | relative_url }}" class="btn btn-outline">
+    <i class="fa-solid fa-arrow-left"></i>
+    Home
+  </a>
+</div>
+
+<section class="section">
+  <h2 class="section-title">Brantley Fights Functors</h2>
+  <p class="section-subtitle">A Blog by a Math Student.</p>
+
+  <div class="blog-list">
+    {% for post in site.posts %}
+      <a href="{{ post.url | relative_url }}" class="blog-item{% if post.thumbnail %} has-thumbnail{% endif %}">
+        {% if post.thumbnail %}
+          <div class="blog-item-thumbnail">
+            <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}">
+          </div>
+        {% endif %}
+        <div class="blog-item-body">
+          <time class="blog-item-date" datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%B %-d, %Y" }}
+          </time>
+          <h3 class="blog-item-title">{{ post.title }}</h3>
+          {% if post.excerpt %}
+            <p class="blog-item-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+          {% endif %}
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="blog-feed-link">
+    <a href="{{ '/feed.xml' | relative_url }}" class="btn btn-outline">
+      <i class="fa-solid fa-rss"></i>
+      RSS Feed
+    </a>
+  </div>
+</section>
+
+<footer class="blog-photo-credit">
+  Photo by Gregoire Jeanneau
+</footer>
