@@ -1,11 +1,10 @@
 // Audio synthesis Web Worker
 
-const SAMPLE_RATE = 22050;
 const DURATION = 2;
 const DECAY_MULT = 150;
 
 self.onmessage = function(e) {
-    const { pointIndex, eigenvectors, frequencies, eigenvalues } = e.data;
+    const { pointIndex, eigenvectors, frequencies, eigenvalues, sampleRate: SAMPLE_RATE } = e.data;
     const numFreq = frequencies.length;
     const coeffs = eigenvectors[pointIndex];
 
