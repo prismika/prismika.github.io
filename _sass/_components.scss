@@ -314,6 +314,64 @@ a.blog-item {
   margin-top: $spacing-lg;
 }
 
+// Footnote Popups
+sup[id^="fnref:"] {
+  .footnote-popup {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    padding: $spacing-sm;
+    background: $bg-card;
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    box-shadow: $shadow-md;
+    font-size: $font-size-sm;
+    line-height: $line-height-base;
+    color: $text-secondary;
+    z-index: 100;
+
+    p {
+      margin: 0;
+    }
+
+    // Arrow
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: $bg-card;
+    }
+
+    @media (max-width: $breakpoint-sm) {
+      position: fixed;
+      bottom: $spacing-md;
+      left: $spacing-md;
+      right: $spacing-md;
+      width: auto;
+      transform: none;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &:hover .footnote-popup,
+  &.footnote-active .footnote-popup {
+    display: block;
+  }
+
+  a {
+    cursor: pointer;
+  }
+}
+
 // Blog Post
 .blog-post {
   max-width: 750px;

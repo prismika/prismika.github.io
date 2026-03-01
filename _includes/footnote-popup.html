@@ -1,0 +1,32 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var defined = {};
+
+  // Collect footnote content from the footnotes section at the bottom
+  document.querySelectorAll("div.footnotes ol li").forEach(function (li) {
+    var id = li.id; // e.g. "fn:1"
+    var clone = li.cloneNode(true);
+    // Remove the backref link
+    var backref = clone.querySelector("a.reversefootnote");
+    if (backref) backref.remove();
+    defined[id] = clone.innerHTML.trim();
+  });
+
+  // Attach popups to each footnote reference
+  document.querySelectorAll("sup[id^='fnref:']").forEach(function (sup) {
+    var link = sup.querySelector("a[href^='#fn:']");
+    if (!link) return;
+
+    var fnId = link.getAttribute("href").slice(1); // e.g. "fn:1"
+    var content = defined[fnId];
+    if (!content) return;
+
+    // Create tooltip element
+    var tooltip = document.createElement("span");
+    tooltip.className = "footnote-popup";
+    tooltip.innerHTML = content;
+    sup.style.position = "relative";
+    sup.appendChild(tooltip);
+  });
+});
+</script>
