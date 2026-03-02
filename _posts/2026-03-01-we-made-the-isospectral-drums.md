@@ -16,7 +16,7 @@ This question was popularized back in the 60's by the mathematician Mark Kac via
 Say you have a drum. The head of the drum is a membrane stretched taut over a shell. The shape of that membrane is usually circular in real-world drums, but it doesn't have to be; your drum head could be an ellipse, a square, or some weirder 2D shape.
 
 ![A very small and simple drum with a circular head.](/assets/images/blog/drums/paul-zoetemeijer-drum.jpg)
-*Image by Paul Zoetmeijer*
+*Image by Paul Zoetemeijer*
 
 You might not be surprised to learn that different drum head shapes will produce different sounds. But you might be surprised to learn how tight the connection between the geometry and the sound actually is.
 
@@ -36,7 +36,7 @@ That is, if I listen very closely to the sound of a drum, and I have very sensit
 
 Why do mathematicians care so much about this question? It's not because they're especially interested in drums. It's because "hearing the shape of a drum" can be reformulated as a natural question about the eigenvalues of the [Laplace operator](https://en.wikipedia.org/wiki/Laplace_operator), which is an object that mathematicians just love. The Laplacian shows up in geometry, analysis, physics, topology, graph theory, data science, and on and on. The reason the Laplacian is related to drum vibrations is that the operator appears in the wave equation. If you want to play around with the wave equation in a data science context, check out my [data sonification page](/projects/sonification/index.html)!
 
-The question stood for over 20 years until the mathematicians Carolyn Gordon, David L. Webb, and Scott Wolpert published a [paper](https://arxiv.org/abs/ math/9207215) with the wonderfully definitive title *One cannot hear the shape of a drum*. The paper describes (but does not explicitly depict) a pair of distinct shapes that, in theory, would produce identical frequencies if they were drum heads. Such a pair of shapes is called an *isospectral pair*.
+The question stood for over 20 years until the mathematicians Carolyn Gordon, David L. Webb, and Scott Wolpert published a [paper](https://arxiv.org/abs/math/9207215) with the wonderfully definitive title *One cannot hear the shape of a drum*. The paper describes (but does not explicitly depict) a pair of distinct shapes that, in theory, would produce identical frequencies if they were drum heads. Such a pair of shapes is called an *isospectral pair*.
 
 ![A pair of two-dimensional shapes. They are non-convex polygons, representing the shapes of the drum heads that theoretically would produce the same set of frequencies.](/assets/images/blog/drums/shapes.png)
 *Image credit: Wikipedia user Keenan Pepper. Based on a depiction of the Gordon-Webb-Wolpert pair by S. J. Chapman.*
