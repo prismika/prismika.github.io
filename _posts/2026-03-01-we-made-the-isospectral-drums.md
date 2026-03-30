@@ -24,17 +24,15 @@ If you hit the drum, the membrane will vibrate. This vibration is what creates t
 
 $$ \text{Geometry} \longrightarrow \text{Frequencies} $$
 
-The question is this: can we reverse this arrow?
+When Kac asked "Can one hear the shape of a drum," he was asking this: can we reverse this arrow?
 
 $$ \text{Geometry} \overset{?}\longleftarrow \text{Frequencies} $$
 
-That is, if I listen very closely to the sound of a drum, and I have very sensitive ears and perfect pitch so that I'm able to pick out all those frequencies $f_1,f_2,f_3,\dots$, can I in principle reverse-engineer the shape of the drum head that produced them?
-
-**Is all of the geometric information encoded in those frequencies? Or is it the case that there are two drum heads that are different shapes, but nevertheless produce identical frequencies?**[^1]
+That is, if I listen very closely to the sound of a drum, and I have very sensitive ears and perfect pitch so that I'm able to pick out all those frequencies $f_1,f_2,f_3,\dots$, can I in principle reverse-engineer the shape of the drum head that produced them? Is all of the geometric information encoded in those frequencies? **Or is it the case that there are two drum heads that are different shapes, but nevertheless produce identical frequencies?**[^1]
 
 [^1]: The question is sometimes phrased by saying that a pair of counterexample drums should "sound the same". This is not quite true. The geometry of a drum determines the set of frequencies that a drum can produce, *not* the relative amplitude of those frequencies. If you've ever heard muffled music through a wall, you know that the relative amplitudes of frequencies make a big difference in the way that something sounds. This is why I stick to the more precise phrase "produce identical frequencies".
 
-Why do mathematicians care so much about this question? It's not because they're especially interested in drums. It's because "hearing the shape of a drum" can be reformulated as a natural question about the eigenvalues of the [Laplace operator](https://en.wikipedia.org/wiki/Laplace_operator), which is an object that mathematicians just love. The Laplacian shows up in geometry, analysis, physics, topology, graph theory, data science, and on and on. The reason the Laplacian is related to drum vibrations is that the operator appears in the wave equation. If you want to play around with the wave equation in a data science context, check out my [data sonification page](/projects/sonification/index.html)!
+As an aside, why do mathematicians care so much about this question? It's not because they're especially interested in drums. It's because "hearing the shape of a drum" can be reformulated as a natural question about the eigenvalues of the [Laplace operator](https://en.wikipedia.org/wiki/Laplace_operator), which is an object that mathematicians just love. The Laplacian shows up in geometry, analysis, physics, topology, graph theory, data science, and on and on. The reason the Laplacian is related to drum vibrations is that the operator appears in the wave equation. If you want to play around with the wave equation in a data science context, check out my [data sonification page](/projects/sonification/index.html)!
 
 The question stood for over 20 years until the mathematicians Carolyn Gordon, David L. Webb, and Scott Wolpert published a [paper](https://arxiv.org/abs/math/9207215) with the wonderfully definitive title *One cannot hear the shape of a drum*. The paper describes (but does not explicitly depict) a pair of distinct shapes that, in theory, would produce identical frequencies if they were drum heads. Such a pair of shapes is called an *isospectral pair*.
 
