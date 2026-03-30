@@ -9,7 +9,7 @@ excerpt: "It's usually the task of the modeler to make their assumptions fit the
 
 "Can One Hear the Shape of a Drum?"
 
-This question was popularized back in the 60's by the mathematician Mark Kac via an article published in the *American Mathematical Monthly*. If you haven't heard the question before, I recommend [Kac's original article](https://www.math.ucdavis.edu/~hunter/m207b/kac.pdf) if you have some mathematical background, or the [Wikipedia page](https://en.wikipedia.org/wiki/Hearing_the_shape_of_a_drum) if you don't. Either way, I'll summarize the meaning of the question here.
+This question was popularized back in the '60s by the mathematician Mark Kac via an article published in the *American Mathematical Monthly*. If you haven't heard the question before, I recommend [Kac's original article](https://www.math.ucdavis.edu/~hunter/m207b/kac.pdf) if you have some mathematical background, or the [Wikipedia page](https://en.wikipedia.org/wiki/Hearing_the_shape_of_a_drum) if you don't. Either way, I'll summarize the meaning of the question here.
 
 # The Question
 
@@ -42,7 +42,9 @@ The question stood for over 20 years until the mathematicians Carolyn Gordon, Da
 It's been over 30 years since that paper was posted. Since then, many more isospectral pairs have been discovered, many pairs of drums that should theoretically produce identical frequencies.
 
 
-I was shocked to learn that, to the best of my knowledge, *no one has ever tried to actually build the drums*.
+I was shocked to learn that, to the best of my knowledge, *no one has ever tried to actually build the drums*.[^2]
+
+[^2]: While it's true that no one has built the drums, someone has performed a physical experiment to verify their properties! Sridhar and Kudrolli, physicists at Northeastern, tested the spectral properties of these shapes by creating thin cavities shaped like the drum heads and observing how microwaves behaved inside. The details are in [this paper](https://doi.org/10.1103/PhysRevLett.72.2175) (which unfortunately requires an institutional login).
 
 # The Project
 
@@ -66,19 +68,27 @@ Reasons for our design decisions:
 - The more clamps, the slower the system lost its energy and the longer the membrane vibrated. We needed to get a good recording of the sound, so longer vibrations were important. This is why the four clamps were necessary.
 
 # The Results
-We flicked the drums and they sounded... like strangely-stretched balloons. It was going to take more work to determine whether the frequencies matched.
+We flicked the drums and they sounded... like strangely-stretched balloons.
 
-To test the drums, we took careful recordings of both drums using a microphone with high sample rate and bit depth. If the drums conformed closely enough to the simple mathematical model, then the frequency content of their sounds should be very similar.
+Here is the sound from the first drum, which we called the "snake" drum:
+![One of the two isospectral drum shapes. It looks vaguely like a polygonal snake.](/assets/images/blog/drums/snake.png)
+<audio controls src="/assets/files/snake.wav"></audio>
 
-To visualize the underlying frequencies of the drums, we used the program Wave Candy to produce spectrograms for both recordings.
+Here's the second drum, which we called the "cat" drum:
+![One of the two isospectral drum shapes. It looks vaguely like a polygonal cat.](/assets/images/blog/drums/cat.png)
+<audio controls src="/assets/files/cat.wav"></audio>
+
+Note that the sounds from the drums are different pitches. This is expected. The pitch is determined in part by the amount of tension in the drum head, and we didn't try to make the tensions match. Still, the *relative* pitches should match in theory. It was going to take more work to determine whether or not this was the case.
+
+We took the above recordings, which were taken using a recorder with high sample rate and bit depth, and visualized the underlying frequencies as a spectrogram using the program Wave Candy.
 
 Drumroll please. (haha)
 
 <img src="/assets/images/blog/drums/spectrogram.png" alt="Spectrograms for two sounds. The spectrograms look somewhat similar if you really squint." style="max-width: none; width: 426px;">
 
-The horizontal axis represents time, and the vertical axis represents frequency. Each horizontal streak comes from a frequency peak that persisted after striking a drum. Each of the two patterns of streaks comes from striking one of the two drums.[^2]
+The horizontal axis represents time, and the vertical axis represents frequency. Each horizontal streak comes from a frequency peak that persisted after striking a drum. Each of the two patterns of streaks comes from striking one of the two drums.[^3]
 
-[^2]: I haven't mentioned this yet, but the geometry only determines the *relative* frequencies. The actual pitch of the drum is determined by multiple factors, including the amount of tension in the drum head. The two drums produced different fundamentals when I struck them, so to make this image I pitched the second one up to get the spectrograms to match as closely as I could.
+[^3]: As I mentioned, the geometry only determines the *relative* frequencies. The two drums produced different fundamentals when I struck them, so to make this image I pitched the second one up to get the spectrograms to match as closely as I could.
 
 The spectrograms are... kinda similar? But not identical. What happened?
 
@@ -96,5 +106,12 @@ Try it out! And if you do, *please* tell me about it!
 ---
 
 Many thanks to my friend Yang Yang for handling the 3D printing, and to Dr. Jim Fowler for design ideas. Thanks also to the Cycle program at Ohio State for funding the project.
+
+---
+
+Updated March 29, 2026:
+
+- Added sound files
+- Linked to the Sridhar and Kudrolli experiment
 
 ---
