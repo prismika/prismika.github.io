@@ -103,6 +103,8 @@ Try it out! And if you do, *please* tell me about it!
 ![Four people holding the drum prototypes, standing in front of a conference poster.](/assets/images/blog/drums/drum_team.jpg)
 *Left to right: Yicheng Lin, Mohamed Musa, Brantley Vose (me), and Alex Theis.*
 
+If you'd like to say something, feel free to leave a comment on the related posts on [mastodon](https://mathstodon.xyz/@prismika/116174542961551572) or [bluesky](https://bsky.app/profile/brantleyvose.bsky.social/post/3mgbv4seoh22j)! Follow me on either one (or RSS) for more posts!
+
 ---
 
 Many thanks to my friend Yang Yang for handling the 3D printing, and to Dr. Jim Fowler for design ideas. Thanks also to the Cycle program at Ohio State for funding the project.
