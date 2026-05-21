@@ -20,7 +20,7 @@
       url: "https://www.jmlr.org/papers/v26/24-0322.html"
       icon: "fa-solid fa-book"
     - label: "Explainer"
-      url: "https://brantleyfightsfunctors.blogspot.com/2024/03/paper-explainer-geometry-and-stability.html"
+      url: "https://prismika.github.io/2024/03/16/paper-explainer-geometry-and-stability.html"
       icon: "fa-solid fa-lightbulb"
 
 - title: "Recovering a group from few orbits"
